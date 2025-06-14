@@ -1,0 +1,27 @@
+app = "n8n-adoudw" 
+primary_region = "cdg"  # Frankfurt (closest to Israel). Other options: ams, sin, iad, etc.
+
+[build]
+image = "docker.n8n.io/n8nio/n8n"
+
+[env]
+N8N_BASIC_AUTH_ACTIVE = "true"
+N8N_BASIC_AUTH_USER = "admin"
+N8N_BASIC_AUTH_PASSWORD = "yourStrongPassword123"
+N8N_HOST = "0.0.0.0"
+N8N_PORT = "5678"
+PORT = "5678"
+N8N_EDITOR_BASE_URL = "https://n8n-adoudw.fly.dev"
+WEBHOOK_TUNNEL_URL = "https://n8n-adoudw.fly.dev"
+
+[[services]]
+protocol = "tcp"
+internal_port = 5678
+
+  [[services.ports]]
+  port = 80
+  handlers = ["http"]
+
+  [[services.ports]]
+  port = 443
+  handlers = ["tls", "http"]
